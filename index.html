@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Rachiel Singh — Physics undergraduate, aspiring backend developer, tech community leader, and NCC cadet.">
+<title>Rachiel Singh | Portfolio</title>
+<style>
+:root {
+  --site-primary: #173f35;
+  --site-secondary: #dcebe3;
+  --site-background: #f7f7f2;
+  --site-on-primary: #ffffff;
+  --site-on-secondary: #173f35;
+  --site-on-background: #182a25;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --surface: light-dark(#ffffff, #19231f);
+  --muted: light-dark(#5d6c65, #b4c1ba);
+  --line: light-dark(#dce4dd, #34423a);
+  --accent: light-dark(#b4d2bd, #315d49);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: light dark; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; overflow: hidden; }
+a { color: inherit; }
+.wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+nav { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:22px 0; border-bottom:1px solid var(--line); }
+.brand { font-weight:800; letter-spacing:-.04em; text-decoration:none; font-size:1.05rem; }
+.brand span { color:var(--site-primary); }
+.navlinks { display:flex; gap:22px; flex-wrap:wrap; }
+.navlinks a { font-size:.88rem; text-decoration:none; color:var(--muted); }
+.navlinks a:hover { color:var(--site-primary); }
+.hero { display:grid; grid-template-columns:1.4fr .8fr; gap:50px; align-items:center; padding:clamp(60px, 10vw, 118px) 0 82px; }
+.eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:.78rem; text-transform:uppercase; letter-spacing:.14em; font-weight:750; color:var(--site-primary); }
+.dot { width:8px; height:8px; border-radius:50%; background:#4d956c; display:inline-block; }
+h1 { font-family:var(--site-font-heading); font-size:clamp(3rem, 7.5vw, 6rem); letter-spacing:-.075em; line-height:.98; margin:18px 0 22px; font-weight:800; }
+h1 em { color:var(--site-primary); font-style:normal; }
+.lead { max-width:640px; font-size:clamp(1.03rem, 2vw, 1.2rem); line-height:1.75; color:var(--muted); }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.btn { display:inline-flex; justify-content:center; align-items:center; padding:12px 17px; border-radius:999px; border:1px solid var(--site-primary); background:var(--site-primary); color:var(--site-on-primary); font-weight:700; font-size:.92rem; text-decoration:none; transition:transform .18s, opacity .18s; }
+.btn:hover { transform:translateY(-2px); opacity:.9; }
+.btn.secondary { background:transparent; color:var(--site-primary); }
+.hero-card { background:var(--site-primary); color:var(--site-on-primary); padding:28px; border-radius:28px; position:relative; overflow:hidden; min-height:300px; display:flex; flex-direction:column; justify-content:space-between; }
+.hero-card:before { content:""; position:absolute; width:240px; height:240px; border:1px solid rgba(255,255,255,.2); border-radius:50%; right:-70px; top:-80px; box-shadow:0 0 0 25px rgba(255,255,255,.04),0 0 0 55px rgba(255,255,255,.035); opacity:var(--site-decoration-opacity); }
+.monogram { font-size:5.4rem; letter-spacing:-.1em; font-weight:850; line-height:1; position:relative; }
+.card-note { font-size:.9rem; line-height:1.6; max-width:240px; color:#d7e9df; position:relative; }
+.card-label { font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:#c0d9cb; position:relative; }
+section { padding:68px 0; border-top:1px solid var(--line); }
+.section-head { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:28px; }
+.kicker { color:var(--site-primary); font-weight:800; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; }
+h2 { margin:8px 0 0; font-size:clamp(1.8rem, 4vw, 2.8rem); letter-spacing:-.055em; }
+.section-intro { color:var(--muted); max-width:500px; line-height:1.7; margin:0; }
+.about-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:30px; }
+.about-copy { font-size:1.04rem; line-height:1.85; color:var(--muted); }
+.pillbox { display:flex; flex-wrap:wrap; gap:9px; align-content:start; }
+.pill { padding:10px 13px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:.88rem; }
+.cards { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; }
+.project { padding:24px; border:1px solid var(--line); border-radius:20px; background:var(--surface); display:flex; flex-direction:column; min-height:220px; }
+.project-top { display:flex; justify-content:space-between; gap:10px; align-items:center; }
+.tag { color:var(--site-primary); background:var(--site-secondary); padding:6px 9px; border-radius:999px; font-size:.72rem; font-weight:800; }
+.project h3 { font-size:1.2rem; letter-spacing:-.03em; margin:20px 0 9px; }
+.project p { color:var(--muted); line-height:1.65; margin:0 0 18px; }
+.project a { margin-top:auto; font-weight:750; font-size:.9rem; text-decoration:none; color:var(--site-primary); }
+.project a:hover { text-decoration:underline; }
+.timeline { display:grid; gap:0; }
+.timeline-item { display:grid; grid-template-columns:190px 1fr; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); }
+.timeline-date { color:var(--muted); font-size:.9rem; }
+.timeline-item h3 { margin:0 0 7px; font-size:1.1rem; }
+.timeline-item p { margin:0; line-height:1.7; color:var(--muted); }
+.awards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.award { padding:22px; border-radius:18px; background:var(--site-secondary); color:var(--site-on-secondary); }
+.award .number { font-size:.75rem; font-weight:800; opacity:.7; letter-spacing:.12em; }
+.award h3 { margin:16px 0 8px; font-size:1.05rem; }
+.award p { margin:0; font-size:.9rem; line-height:1.6; }
+.contact { background:var(--site-primary); color:var(--site-on-primary); border-radius:26px; padding:clamp(26px, 5vw, 48px); display:grid; grid-template-columns:1fr auto; gap:25px; align-items:center; }
+.contact h2 { margin:0 0 10px; }
+.contact p { color:#d3e3d9; line-height:1.7; margin:0; max-width:520px; }
+.contact .btn { background:#fff; color:#173f35; border-color:#fff; white-space:nowrap; }
+footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:28px 0; color:var(--muted); font-size:.82rem; }
+footer a { text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+@media (prefers-color-scheme: dark) {
+  :root { --site-primary:#8ac0a0; --site-secondary:#243c30; --site-background:#111814; --site-on-primary:#10251a; --site-on-secondary:#e0f0e5; --site-on-background:#edf4ef; }
+  .eyebrow,.kicker,.navlinks a:hover,.project a { color:var(--site-primary); }
+  .hero-card { color:#10251a; }
+  .card-note,.card-label { color:#244b36; }
+  .contact { color:#10251a; }
+  .contact p { color:#244b36; }
+  .contact .btn { background:#10251a; color:#edf4ef; border-color:#10251a; }
+}
+@media (max-width:760px) {
+  .wrap { width:min(100% - 30px, 600px); }
+  nav { align-items:flex-start; }
+  .navlinks { gap:12px; justify-content:flex-end; }
+  .navlinks a { font-size:.8rem; }
+  .hero { grid-template-columns:1fr; gap:28px; padding:58px 0; }
+  .hero-card { min-height:230px; }
+  .about-grid,.cards,.contact { grid-template-columns:1fr; }
+  .section-head { align-items:flex-start; flex-direction:column; }
+  .timeline-item { grid-template-columns:1fr; gap:7px; }
+  .awards { grid-template-columns:1fr; }
+  .contact .btn { justify-self:start; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="wrap">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">Rey<span>.</span></a>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero" id="home" style="border-top:0">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Physics student · Tech builder</div>
+          <h1>Hi, I’m<br><em>Rachiel Singh.</em></h1>
+          <p class="lead">I’m a B.Sc. Physics Honours student at Maitreyi College, exploring backend development and building practical digital solutions. I enjoy collaborating on tech projects, learning by doing, and taking initiative in communities.</p>
+          <div class="actions">
+            <a class="btn" href="#projects">Explore my work <span aria-hidden="true">&nbsp;↗</span></a>
+            <a class="btn secondary" href="mailto:rachielpo@gmail.com">Get in touch</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Introduction card">
+          <div class="card-label">A little about me</div>
+          <div class="monogram">Rey</div>
+          <div class="card-note">Building with curiosity, leading with purpose.</div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="section-head">
+          <div><div class="kicker">01 / About</div><h2>Science meets software.</h2></div>
+          <p class="section-intro">Learning the fundamentals, building with purpose, and growing one project at a time.</p>
+        </div>
+        <div class="about-grid">
+          <p class="about-copy">My academic background is in Physics, while my growing technical interests include backend development, Python, web technologies, and problem-solving. Through college projects, an IT internship, and Nexora, I’m developing both my technical foundation and my ability to work with people. My involvement in NCC has also helped me value discipline, teamwork, and taking responsibility. I’m currently learning data structures and algorithms in C++.</p>
+          <div class="pillbox" aria-label="Skills">
+            <span class="pill">Python</span><span class="pill">HTML</span><span class="pill">Backend Development</span><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">C++ · Learning</span><span class="pill">Data Structures & Algorithms · Learning</span><span class="pill">Team Collaboration</span><span class="pill">Leadership</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head">
+          <div><div class="kicker">02 / Selected work</div><h2>Projects in progress.</h2></div>
+          <p class="section-intro">A mix of practical college work and collaborative technology projects.</p>
+        </div>
+        <div class="cards">
+          <article class="project">
+            <div class="project-top"><span class="tag">Web project</span><span aria-hidden="true">↗</span></div>
+            <h3>Kavach — Mine Safety Training</h3>
+            <p>A website focused on mine safety training.</p>
+            <a href="https://kavach-3mrx.onrender.com" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="tag">Web project</span><span aria-hidden="true">↗</span></div>
+            <h3>eRTMAC-NWIS</h3>
+            <p>A web-based project. Details about its purpose, technology stack, and my individual contribution can be added as the project information is finalised.</p>
+            <a href="https://gurltff.github.io/eRTMAC-NWIS/app/#/login" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="tag">Developed project</span><span aria-hidden="true">✓</span></div>
+            <h3>College Attendance Management System</h3>
+            <p>A developed attendance management project. The system’s exact features and technology details can be added to make the implementation clearer.</p>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="tag">Hackathon</span><span aria-hidden="true">★</span></div>
+            <h3>SheCodes 2026</h3>
+            <p>Collaborated on a hackathon project with a team that won. Add the project title, problem statement, and your specific contribution for a stronger case study.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="section-head">
+          <div><div class="kicker">03 / Experience & leadership</div><h2>Learning by contributing.</h2></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">October 2026 – Present</div>
+            <div><h3>IT Intern · IQAC</h3><p>Computer Science Department, Maitreyi College. Contributing to a website that will digitise college alumni records currently maintained in hard-copy form.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Leadership</div>
+            <div><h3>General Secretary & Backend Head · Nexora</h3><p>Helping lead a coding community and contributing to its backend-focused work and student tech initiatives.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Education</div>
+            <div><h3>B.Sc. Physics Honours · Maitreyi College</h3><p>Currently in second year, building a foundation in scientific thinking alongside practical software skills.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements">
+        <div class="section-head">
+          <div><div class="kicker">04 / Achievements</div><h2>Beyond the classroom.</h2></div>
+          <p class="section-intro">Teamwork, discipline, and showing up for the challenge.</p>
+        </div>
+        <div class="awards">
+          <article class="award"><div class="number">NCC · INSTITUTIONAL</div><h3>Best Institution</h3><p>Recognised as Best Institution in NCC.</p></article>
+          <article class="award"><div class="number">CATC 2026</div><h3>Best Institution at Camp</h3><p>Institution earned Best Institution recognition at this year’s CATC camp.</p></article>
+          <article class="award"><div class="number">CATC 2026</div><h3>Tug of War — 1st Place</h3><p>Won first position in the Tug of War competition at CATC.</p></article>
+          <article class="award"><div class="number">NCC · SQUAD DRILL</div><h3>Squad Drill Winner</h3><p>Won a squad drill competition held through NCC.</p></article>
+          <article class="award"><div class="number">SHECODES 2026</div><h3>Hackathon Winner</h3><p>Team winner at SheCodes 2026.</p></article>
+          <article class="award"><div class="number">COMMUNITY</div><h3>Nexora Leadership</h3><p>General Secretary and Backend Head in a student coding community.</p></article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact">
+          <div><h2>Let’s connect.</h2><p>Open to learning, collaboration, and opportunities where I can contribute while growing my technical skills.</p></div>
+          <a class="btn" href="mailto:rachielpo@gmail.com">Email me ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year">2026</span> Rachiel Singh</span>
+      <span><a href="https://github.com/reyysingh" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/rachiel-singh-331975284" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:rachielpo@gmail.com">Email</a></span>
+    </footer>
+  </div>
+</div>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
